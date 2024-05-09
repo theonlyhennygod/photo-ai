@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { preview } from '../assets'
 import { getRandomPrompt } from '../utils'
-
 import { FormField, Loader } from '../components'
+import { set } from 'mongoose'
+
 
 const CreatePost = () => {
 
@@ -20,18 +20,63 @@ const CreatePost = () => {
     const [generatingImage, setGeneratingImage] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const generateImage = () => { }
-
-    const handleSubmit = () => { }
+    // Handle form input changes
 
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
     }
-    
+
     const handleSurpriseMe = () => {
         const randomPropmt = getRandomPrompt(form.prompt)
         setForm({ ...form, prompt: randomPropmt })
     }
+
+    // Generate an image using the DALL-E API
+
+    const generateImage = async () => {
+        if (form.prompt) {
+            try {
+                setGeneratingImage(true);
+                const response = await fetch('http://localhost:8080/api/v1/dalle', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: form.prompt })
+                });
+
+                const data = await response.json();
+                setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+            } catch (error) {
+                alert(error);
+                console.log(error);
+            } finally {
+                setGeneratingImage(false);
+            }
+        } else {
+            alert('Please enter a prompt');
+        }
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (form.prompt && form.photo) {
+            setLoading(true);
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ ...form })
+                });
+                }
+            }
+        }
+    }
+
+    // Handle the Surprise Me button
 
     return (
         <section className='max-w-7xl mx-auto'>
@@ -110,7 +155,6 @@ const CreatePost = () => {
                         {loading ? 'Sharing...' : 'Share with the community'}
                     </button>
                 </div>
-
             </form>
         </section>
     )
