@@ -112,7 +112,7 @@ return (
                     name='name'
                     placeholder='Enter your name'
                     value={form.name}
-                    onChange={handleChange}
+                    handleChange={handleChange}
                 />
 
                 <FormField
@@ -121,7 +121,7 @@ return (
                     name='prompt'
                     placeholder='Enter a prompt'
                     value={form.prompt}
-                    onChange={handleChange}
+                    handleSurpriseMe={handleSurpriseMe}
                 />
             </div>
 
