@@ -13,8 +13,8 @@ const router = express.Router();
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-})
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // get all posts
 
@@ -33,21 +33,22 @@ router.route('/').get(async (request, response) => {
 router.route('/').post(async (request, response) => {
     try {
         const { name, prompt, photo } = request.body;
-        const result = await cloudinary.uploader.upload(photo, {
-            upload_preset: 'dalle'
-        });
+        console.log("here 1")
+        const photoUrl = await cloudinary.uploader.upload(photo);
+        console.log("here 2")
 
-        const newPost = new Post({
+        const newPost = await new Post({
             name,
             prompt,
-            photo: result.secure_url
+            photo: photoUrl.url,
         });
 
         await newPost.save();
-        response.status(201).json(newPost);
+        console.log("here 4")
+        response.status(201).json({ success: true, data: newPost });
     } catch (error) {
         console.log('Error in creating post', error);
-        response.status(500).send({ message: 'Error in creating post' });
+        response.status(500).json({ success: false, message: error});
     }
 })
 
