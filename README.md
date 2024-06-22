@@ -2,6 +2,10 @@
 
 This is a full-stack application that utilizes OpenAI, React, MongoDB, Cloudinary, and DALL·E Photo to create a unique generative AI experience.
 
+
+![Photo Generative AI Demo](giphy.mp4)
+
+
 ## Overview
 
 The purpose of this application is to showcase the capabilities of generative AI by leveraging OpenAI's powerful models. By combining React for the frontend, MongoDB for data storage, Cloudinary for image hosting, and DALL·E Photo for generating images, this application provides a seamless and interactive user experience.
