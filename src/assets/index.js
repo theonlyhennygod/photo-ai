@@ -1,5 +1,5 @@
 import download from './download.png';
-import logo from './logo.svg';
+import logo from './photo.png';
 import preview from './preview.png';
 
 export {
