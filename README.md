@@ -2,8 +2,9 @@
 
 This is a full-stack application that utilizes OpenAI, React, MongoDB, Cloudinary, and DALL·E Photo to create a unique generative AI experience.
 
+# DEMO
 
-![Photo Generative AI Demo](giphy.mp4)
+https://github.com/theonlyhennygod/photo-ai/assets/144828210/a334e862-deb6-437c-8a90-5fc9f8d12464
 
 
 ## Overview
