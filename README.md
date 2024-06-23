@@ -4,7 +4,7 @@ This is a full-stack application that utilizes OpenAI, React, MongoDB, Cloudinar
 
 # DEMO
 
-https://github.com/theonlyhennygod/photo-ai/assets/144828210/a334e862-deb6-437c-8a90-5fc9f8d12464
+https://github.com/theonlyhennygod/photo-ai/assets/144828210/8a81ae6f-677b-4d1b-94d4-f89fb40c0530
 
 
 ## Overview
